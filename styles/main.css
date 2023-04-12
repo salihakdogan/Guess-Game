@@ -1,0 +1,110 @@
+/*Global settings*/
+*,
+*::before,
+*::after {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/*Variables*/
+:root {
+    --primary: #d9d9d9;
+    --secondary: #161616;
+    --black: #000000;
+    --green: #6a994e;
+    --font: 'Press Start 2P';
+}
+
+/*Html elements*/
+body {
+    font-family: var(--font);
+    background-color: var(--primary);
+}
+
+section {
+    width: 100%;
+    height: 100vh;
+    padding: 1rem;
+    background-color: var(--primary);
+}
+
+/*Information-text modal*/
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 1;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgba(0, 0, 0, 0.3);
+}
+
+.modal-content {
+    background-color: #232323;
+    position: fixed;
+    bottom: 0;
+    padding: 1rem;
+    width: 100%;
+    -webkit-animation-name: animatebottom;
+    -webkit-animation-duration: 0.4s;
+    animation-name: animatebottom;
+    animation-duration: 0.4s
+}
+
+@-webkit-keyframes animatebottom {
+    from {
+        bottom: -300px;
+        opacity: 0
+    } to {
+        bottom: 0;
+        opacity: 1
+    }
+}
+
+@keyframes animatebottom {
+    from {
+        bottom: -300px;
+        opacity: 0
+    } to {
+        bottom: 0;
+        opacity: 1
+    }
+}
+
+/*Buttons*/
+.btn {
+    padding: 0.5rem 2rem;
+    color: var(--secondary);
+    background-color: var(--secondary);
+    border: 1px solid var(--primary);
+    font-family: var(--font);
+}
+
+.btn:hover,
+.btn:focus {
+    color: var(--primary);
+    cursor: pointer;
+    opacity: 0.8;
+    border: 1px solid var(--secondary);
+}
+
+/*Button colors*/
+.accept {
+    background-color: var(--green);
+}
+
+/*Texts*/
+.information-text {
+    color: var(--primary);
+    margin-bottom: 1rem;
+}
+
+/*Alignments*/
+.flex-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
