@@ -13,16 +13,22 @@
     --secondary: #161616;
     --black: #000000;
     --green: #6a994e;
+    --red: #bc4749;
     --font: 'Press Start 2P';
+    --opacity: 0.5;
 }
 
 /*Html elements*/
 body {
     font-family: var(--font);
     background-color: var(--primary);
+    color: var(--primary);
 }
 
 section {
+    display: flex;
+    align-items: center;
+    justify-content: center;
     width: 100%;
     height: 100vh;
     padding: 1rem;
@@ -92,8 +98,65 @@ section {
 }
 
 /*Button colors*/
-.accept {
+.success {
     background-color: var(--green);
+}
+
+.danger {
+    background-color: var(--red);
+}
+
+/*Shapes*/
+.square, .rectangle {
+    background-color: var(--secondary);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/*Shape dimensions*/
+/*Acronyms 
+sq: square
+rec: rectangle */
+.sq-big {
+    width: 16rem;
+    height: 16rem;
+}
+
+.sq-small {
+    width: 8rem;
+    height: 8rem;
+}
+
+.rec-big {
+    width: 18rem;
+    height: 4rem;
+}
+
+.rec-small {
+    width: 9rem;
+    height: 4rem;
+    font-size: 0.6rem;
+}
+
+/*Containers and alignments*/
+.ui-container {
+    display: flex;
+    gap: 1rem;
+}
+
+.container {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.left {
+    align-items: flex-end;
+}
+
+.right {
+    align-items: flex-start;
 }
 
 /*Texts*/
@@ -102,9 +165,43 @@ section {
     margin-bottom: 1rem;
 }
 
-/*Alignments*/
-.flex-container {
+.hide {
+    display: none;
+}
+
+.show {
     display: flex;
-    align-items: center;
-    justify-content: center;
+}
+
+.opacity {
+    opacity: 0.1;
+}
+
+.border {
+    border: 2px solid var(--green);
+}
+
+#screen3 .square {
+    padding: 1rem;
+    flex-direction: row;
+    align-items: flex-end;
+    gap: 1rem;
+    position: relative;
+}
+
+#screen3 #numbers {
+    position: absolute;
+    top: 4rem;
+    font-size: 1.5rem;
+}
+
+#screen3 #result {
+    position: absolute;
+    top: 7rem;
+}
+
+#screen3 .btn {
+    width: 50%;
+    height: 4rem;
+    font-size: 2rem;
 }
