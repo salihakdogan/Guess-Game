@@ -14,6 +14,7 @@
     --black: #000000;
     --green: #6a994e;
     --red: #bc4749;
+    --blue: #168aad;
     --font: 'Press Start 2P';
     --opacity: 0.5;
 }
@@ -204,4 +205,10 @@ rec: rectangle */
     width: 50%;
     height: 4rem;
     font-size: 2rem;
+}
+
+#screen3 .info {
+    font-size: 1.5rem;
+    width: 100%;
+    background-color: var(--blue);
 }

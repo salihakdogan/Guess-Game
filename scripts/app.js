@@ -40,22 +40,41 @@ $(".hover").hover(function () {
 	$(this).toggleClass("border");
 });
 
-
+/* game starting here */
 var started = false;
 var score = 0;
 
+function setHighScore(scorePoint) {
+	localStorage.setItem("highScore", scorePoint);
+}
+
+function getHighScore() {
+	return localStorage.getItem("highScore");
+}
+
 $(".middle").click(function () {
-	started = true;
 	$("#screen2").removeClass("show")
 	$("#screen2").addClass("hide");
 	$("#screen3").addClass("show");
 	$("#screen3 .right").addClass("opacity");
-
+	if (!started) {
+		startGame();
+		started = true;
+	}
 });
 
-const randomNumber1 = Math.floor((Math.random() * 100));
-$("#randomNumber1").html(randomNumber1);
+var randomNumber1;
+var randomNumber2;
 
+function startGame() {
+	$("#highScore").html(getHighScore());
+	$("#result").html("");
+	$("#symbol").html("and");
+	randomNumber1 = Math.floor((Math.random() * 100));
+	$("#randomNumber1").html(randomNumber1);
+	randomNumber2 = "??";
+	$("#randomNumber2").html(randomNumber2);
+}
 
 $("#up").click(function() {
 	calculate("up");
@@ -65,88 +84,72 @@ $("#down").click(function() {
 	calculate("down");
 });
 
-function calculate(params) {
-	const randomNumber2 = Math.floor((Math.random() * 100));
+$("#restart").click(function() {
+	setTimeout(function () {
+		startGame();
+		score = "";
+		$("#score").html(score);
+		$("#up").toggleClass("hide");
+		$("#down").toggleClass("hide");
+		$("#restart").toggleClass("hide");
+	}, 500);
+});
+
+function hideButtons() {
+	$("#up").toggleClass("hide");
+	$("#down").toggleClass("hide");
+}
+
+function winProgress() {
+	$("#result").html("win");
+	score++;
+	setTimeout(function () {
+		startGame();	
+		$("#score").html(score);
+		hideButtons();
+		if (score > getHighScore()) {
+			setHighScore(score);
+			$("#highScore").html(getHighScore());
+		}
+	}, 2000);
+}
+
+function loseProgress() {
+	$("#result").html("lose");
+	$("#restart").toggleClass("hide");
+}
+
+function equalProgress() {
+	$("#result").html("equal");
+	score+=9;
+	winProgress();
+}
+
+function calculate(selectedButton) {
+	randomNumber2 = Math.floor((Math.random() * 100));
 	$("#randomNumber2").html(randomNumber2);
 
-	$("#up").addClass("hide");
-	$("#down").addClass("hide");
+	hideButtons();
 
 	if (randomNumber1 > randomNumber2) {
 		$("#symbol").html(">");
-		if (params === "up") {
-			$("#result").html("lose");
-			startOver();
-
+		if (selectedButton === "up") {
+			loseProgress();
 		} else {
-			$("#result").html("win");
-			$("#up").toggleClass("hide");
-			$("#down").toggleClass("hide");
-			score++;
+			winProgress();
 		}
-
-	} else {
+	} else if (randomNumber1 < randomNumber2) {
 		$("#symbol").html("<");
-		if (params === "up") {
-			$("#result").html("win");	
-			$("#up").toggleClass("hide");
-			$("#down").toggleClass("hide");
-			score++;
-
+		if (selectedButton === "up") {
+			winProgress();
 		} else {
-			$("#result").html("lose");
-			startOver();
+			loseProgress();
 		}
+	} else {
+		$("#symbol").html("=");
+		equalProgress();
 	}
-	$("#score").html(score);
 }
-
-function startOver() {
-	score = 0;
-	started = false;
-}
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 //A function that takes audio files as parameters and plays
 function playsound(sound) {
