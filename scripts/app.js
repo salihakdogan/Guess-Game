@@ -1,50 +1,52 @@
 //If the user approves the informative text, the modal will be closed. A true-valued object will be created for the accepted key in local storage.
-$("#modalButton").on("click", function() {
-	$("#modal").css("display","none");
+$("#modalButton").on("click", function () {
+	$("#modal").css("display", "none");
+	$("#smallHoverSquare").mouseover(function () {
+		$("#modal").css("display", "none");
+	});
 	playsound("clickAccept");
 	localStorage.setItem("accepted", "true");
-	setTimeout( function name() {
+	setTimeout(function name() {
 		window.location.reload();
-	},2000);
+	}, 2000);
 });
 
 //Closes the modal belonging to the information message when clicked anywhere on the screen
-$(window).on("click", function() {
-	$("#modal").css("display","none");
+$(window).on("click", function () {
+	$("#modal").css("display", "none");
 })
 
 //If the value of the accepted key is not true, the informative modal will be opened again on page load and in the mouseover event of screen1Square.
 const isItAccepted = localStorage.getItem("accepted");
 if (!isItAccepted) {
 	$(window).on("load", function () {
-		$("#modal").css("display","block");
+		$("#modal").css("display", "block");
 	});
-	$("#screen1Square").mouseover(function () {
-		$("#modal").css("display","block");
+	$("#smallHoverSquare").mouseover(function () {
+		$("#modal").css("display", "block");
 	});
 } else { //If the accepted key is true, the second screen will be transitioned to in the mouseover event of screen1Square.
-	$("#screen1Square").mouseover(function () {
+	$("#smallHoverSquare").one("mouseover", function () {
 		$(this).animate({
 			width: "16rem",
 			height: "16rem"
 		}, 300);
 		setTimeout(function () {
-			$("#screen1").addClass("hide");
-			$("#screen2").addClass("show");
-			$("#screen2 .left").addClass("opacity");
-		}, 700);
+			$("#smallHoverSquare").toggleClass("hide");
+			$("#bigClickSquare").toggleClass("hide");
+			$("#leftSide").toggleClass("hide");
+			$("#rightSide").toggleClass("hide");
+			$("#leftSide").toggleClass("opacity");
+		}, 500);
 	});
 }
-
-$(".hover").hover(function () {
-	$(this).toggleClass("border");
-});
 
 /* game starting here */
 var started = false;
 var score = 0;
 
 function setHighScore(scorePoint) {
+	playsound("setHighScore");
 	localStorage.setItem("highScore", scorePoint);
 }
 
@@ -52,15 +54,22 @@ function getHighScore() {
 	return localStorage.getItem("highScore");
 }
 
-$(".middle").click(function () {
-	$("#screen2").removeClass("show")
-	$("#screen2").addClass("hide");
-	$("#screen3").addClass("show");
-	$("#screen3 .right").addClass("opacity");
-	if (!started) {
-		startGame();
-		started = true;
-	}
+$("#bigClickSquare").one("click", function () {
+	$("#startGameText").toggleClass("hide");
+	$("#gameStartingText").toggleClass("hide");
+	$(".progressBar").toggleClass("hide");
+	setProgressBar(1.2);
+	playsound("startingGame");
+	setTimeout(function () {
+		$("#bigClickSquare").toggleClass("hide");
+		$("#gameStartedSquare").toggleClass("hide");
+		$("#rightSide").toggleClass("opacity");
+		$("#leftSide").toggleClass("opacity");
+		if (!started) {
+			startGame();
+			started = true;
+		}
+	}, 2400);
 });
 
 var randomNumber1;
@@ -76,21 +85,20 @@ function startGame() {
 	$("#randomNumber2").html(randomNumber2);
 }
 
-$("#up").click(function() {
+$("#up").click(function () {
 	calculate("up");
 });
 
-$("#down").click(function() {
+$("#down").click(function () {
 	calculate("down");
 });
 
-$("#restart").click(function() {
+$("#restart").click(function () {
 	setTimeout(function () {
 		startGame();
 		score = "";
 		$("#score").html(score);
-		$("#up").toggleClass("hide");
-		$("#down").toggleClass("hide");
+		hideButtons();
 		$("#restart").toggleClass("hide");
 	}, 500);
 });
@@ -101,10 +109,11 @@ function hideButtons() {
 }
 
 function winProgress() {
+	playsound("winGame");
 	$("#result").html("win");
 	score++;
 	setTimeout(function () {
-		startGame();	
+		startGame();
 		$("#score").html(score);
 		hideButtons();
 		if (score > getHighScore()) {
@@ -115,13 +124,14 @@ function winProgress() {
 }
 
 function loseProgress() {
+	playsound("loseGame");
 	$("#result").html("lose");
 	$("#restart").toggleClass("hide");
 }
 
 function equalProgress() {
 	$("#result").html("equal");
-	score+=9;
+	score += 9;
 	winProgress();
 }
 
@@ -160,11 +170,25 @@ function playsound(sound) {
 //A function that deletes a local storage object captured by a parameter for testing purposes
 function removeLocalStorage(prm) {
 	const doesItExist = localStorage.getItem(prm)
-	if (doesItExist != null)
-	{
+	if (doesItExist != null) {
 		localStorage.removeItem(prm);
 		console.log("The local storage object belonging to the '" + prm + "' key has been successfully deleted.");
 	} else {
 		console.log("A local storage object belonging to the '" + prm + "' key could not be found.");
 	}
+}
+
+function setProgressBar(duration) {
+	var progressBarPercent = $(".progressBarPercent");
+	var width = 0;
+	var increment = 100 / (duration * 1000 / 10);
+
+	var intervalId = setInterval(function () {
+		width += increment;
+		progressBarPercent.width(width + "%");
+
+		if (width >= 100) {
+			clearInterval(intervalId);
+		}
+	}, 10);
 }

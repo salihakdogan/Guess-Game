@@ -12,6 +12,7 @@
     --primary: #d9d9d9;
     --secondary: #161616;
     --black: #000000;
+    --gray: #9d9d9d;
     --green: #6a994e;
     --red: #bc4749;
     --blue: #168aad;
@@ -49,19 +50,19 @@ section {
     background-color: rgba(0, 0, 0, 0.3);
 }
 
-.modal-content {
+.modalContent {
     background-color: #232323;
     position: fixed;
     bottom: 0;
     padding: 1rem;
     width: 100%;
-    -webkit-animation-name: animatebottom;
+    -webkit-animation-name: animateBottom;
     -webkit-animation-duration: 0.4s;
-    animation-name: animatebottom;
+    animation-name: animateBottom;
     animation-duration: 0.4s
 }
 
-@-webkit-keyframes animatebottom {
+@-webkit-keyframes animateBottom {
     from {
         bottom: -300px;
         opacity: 0
@@ -71,7 +72,7 @@ section {
     }
 }
 
-@keyframes animatebottom {
+@keyframes animateBottom {
     from {
         bottom: -300px;
         opacity: 0
@@ -119,34 +120,34 @@ section {
 /*Acronyms 
 sq: square
 rec: rectangle */
-.sq-big {
+.sqBig {
     width: 16rem;
     height: 16rem;
 }
 
-.sq-small {
+.sqSmall {
     width: 8rem;
     height: 8rem;
 }
 
-.rec-big {
+.recBig {
     width: 18rem;
     height: 4rem;
 }
 
-.rec-small {
+.recSmall {
     width: 9rem;
     height: 4rem;
     font-size: 0.6rem;
 }
 
 /*Containers and alignments*/
-.ui-container {
+.container {
     display: flex;
     gap: 1rem;
 }
 
-.container {
+.sideContainer {
     display: flex;
     flex-direction: column;
     gap: 1rem;
@@ -161,17 +162,13 @@ rec: rectangle */
 }
 
 /*Texts*/
-.information-text {
+.informationText {
     color: var(--primary);
     margin-bottom: 1rem;
 }
 
 .hide {
     display: none;
-}
-
-.show {
-    display: flex;
 }
 
 .opacity {
@@ -182,7 +179,7 @@ rec: rectangle */
     border: 2px solid var(--green);
 }
 
-#screen3 .square {
+#gameInterface #gameStartedSquare {
     padding: 1rem;
     flex-direction: row;
     align-items: flex-end;
@@ -190,25 +187,44 @@ rec: rectangle */
     position: relative;
 }
 
-#screen3 #numbers {
+#gameStartedSquare #numbers {
     position: absolute;
     top: 4rem;
     font-size: 1.5rem;
 }
 
-#screen3 #result {
+#gameStartedSquare #result {
     position: absolute;
     top: 7rem;
 }
 
-#screen3 .btn {
+#gameStartedSquare .btn {
     width: 50%;
     height: 4rem;
     font-size: 2rem;
 }
 
-#screen3 .info {
+#gameStartedSquare .info {
     font-size: 1.5rem;
     width: 100%;
     background-color: var(--blue);
+}
+
+#bigClickSquare {
+    flex-direction: column;
+    padding: 1rem;
+    gap: 1rem;
+}
+
+.progressBar{
+    width: 100%;
+    height: 4px;
+    background-color: var(--secondary);
+}
+  
+.progressBarPercent {
+    width: 0%;
+    height: 100%;
+    background-color: var(--primary);
+    transition: width 1s linear;
 }
