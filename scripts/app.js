@@ -37,6 +37,7 @@ if (!isItAccepted) {
 			$("#leftSide").toggleClass("hide");
 			$("#rightSide").toggleClass("hide");
 			$("#leftSide").toggleClass("opacity");
+			$("#highScore").html(getHighScore());
 		}, 500);
 	});
 }
@@ -76,7 +77,6 @@ var randomNumber1;
 var randomNumber2;
 
 function startGame() {
-	$("#highScore").html(getHighScore());
 	$("#result").html("");
 	$("#symbol").html("and");
 	randomNumber1 = Math.floor((Math.random() * 100));
@@ -111,14 +111,17 @@ function hideButtons() {
 function winProgress() {
 	playsound("winGame");
 	$("#result").html("win");
+	animateElement("#gameStartedSquare", "greenColor");
 	score++;
 	setTimeout(function () {
 		startGame();
 		$("#score").html(score);
+		animateElement("#scoreContainer", "greenColor");
 		hideButtons();
 		if (score > getHighScore()) {
 			setHighScore(score);
 			$("#highScore").html(getHighScore());
+			animateElement("#highScoreContainer", "blueColor");
 		}
 	}, 2000);
 }
@@ -126,21 +129,22 @@ function winProgress() {
 function loseProgress() {
 	playsound("loseGame");
 	$("#result").html("lose");
+	animateElement("#gameStartedSquare", "redColor");
 	$("#restart").toggleClass("hide");
 }
 
 function equalProgress() {
 	$("#result").html("equal");
 	score += 9;
-	winProgress();
+	setTimeout(function () {
+		winProgress();
+	}, 700);
 }
 
 function calculate(selectedButton) {
 	randomNumber2 = Math.floor((Math.random() * 100));
 	$("#randomNumber2").html(randomNumber2);
-
 	hideButtons();
-
 	if (randomNumber1 > randomNumber2) {
 		$("#symbol").html(">");
 		if (selectedButton === "up") {
@@ -159,6 +163,13 @@ function calculate(selectedButton) {
 		$("#symbol").html("=");
 		equalProgress();
 	}
+}
+
+function animateElement(elementId, className) {
+	$(elementId).toggleClass(className);
+	setTimeout(function () {
+		$(elementId).toggleClass(className);
+	}, 500)
 }
 
 //A function that takes audio files as parameters and plays
@@ -182,7 +193,6 @@ function setProgressBar(duration) {
 	var progressBarPercent = $(".progressBarPercent");
 	var width = 0;
 	var increment = 100 / (duration * 1000 / 10);
-
 	var intervalId = setInterval(function () {
 		width += increment;
 		progressBarPercent.width(width + "%");

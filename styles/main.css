@@ -175,8 +175,16 @@ rec: rectangle */
     opacity: 0.1;
 }
 
-.border {
-    border: 2px solid var(--green);
+.greenColor {
+    color: var(--green);
+}
+
+.redColor {
+    color: var(--red);
+}
+
+.blueColor {
+    color: var(--blue);
 }
 
 #gameInterface #gameStartedSquare {
@@ -191,6 +199,11 @@ rec: rectangle */
     position: absolute;
     top: 4rem;
     font-size: 1.5rem;
+    width: 100%;
+    display: flex;
+    gap: 1rem;
+    align-items: center;
+    justify-content: center;
 }
 
 #gameStartedSquare #result {
@@ -225,6 +238,6 @@ rec: rectangle */
 .progressBarPercent {
     width: 0%;
     height: 100%;
-    background-color: var(--primary);
+    background-color: var(--blue);
     transition: width 1s linear;
 }
