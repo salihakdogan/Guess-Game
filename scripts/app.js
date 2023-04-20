@@ -1,8 +1,8 @@
 //If the user approves the informative text, the modal will be closed. A true-valued object will be created for the accepted key in local storage.
 $("#modalButton").on("click", function () {
-	$("#modal").css("display", "none");
+	$("#informationModal").css("display", "none");
 	$("#smallHoverSquare").mouseover(function () {
-		$("#modal").css("display", "none");
+		$("#informationModal").css("display", "none");
 	});
 	playsound("clickAccept");
 	localStorage.setItem("accepted", "true");
@@ -12,20 +12,21 @@ $("#modalButton").on("click", function () {
 });
 
 //Closes the modal belonging to the information message when clicked anywhere on the screen
-$(window).on("click", function () {
-	$("#modal").css("display", "none");
-})
+$(".modal").on("click", function () {
+	$("#informationModal").css("display","none");
+});
 
 //If the value of the accepted key is not true, the informative modal will be opened again on page load and in the mouseover event of screen1Square.
 const isItAccepted = localStorage.getItem("accepted");
 if (!isItAccepted) {
 	$(window).on("load", function () {
-		$("#modal").css("display", "block");
+		$("#informationModal").css("display", "flex");
 	});
 	$("#smallHoverSquare").mouseover(function () {
-		$("#modal").css("display", "block");
+		$("#informationModal").css("display", "flex");
 	});
 } else { //If the accepted key is true, the second screen will be transitioned to in the mouseover event of screen1Square.
+	$("#smallHoverSquare").toggleClass("blink");
 	$("#smallHoverSquare").one("mouseover", function () {
 		$(this).animate({
 			width: "16rem",
@@ -41,6 +42,14 @@ if (!isItAccepted) {
 		}, 500);
 	});
 }
+
+$("#settingsButton").on("click", function() {
+	$("#settingsModal").css("display","flex");
+});
+
+$("#closeButton").click(function() {
+	$("#settingsModal").css("display","none");
+});
 
 /* game starting here */
 var started = false;

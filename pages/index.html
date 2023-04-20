@@ -41,9 +41,9 @@
 				</p>
 				<p id="result">
 				</p>
-				<button id="up" type="submit" class="btn success">↑</button>
-				<button id="down" type="submit" class="btn danger">↓</button>
-				<button id="restart" type="submit" class="btn info hide">restart</button>
+				<button id="up" type="submit" class="btn green">↑</button>
+				<button id="down" type="submit" class="btn red">↓</button>
+				<button id="restart" type="submit" class="btn blue hide">restart</button>
 			</div>
 
 			<div class="sideContainer right hide" id="rightSide">
@@ -58,12 +58,46 @@
 		</div>
 	</section>
 
-	<div id="modal" class="modal">
-		<div class="modalContent">
+	<div id="informationModal" class="modal">
+		<div class="modalContentInformation">
 			<p class="informationText">
 				Bu oyun yüksek skor verilerinizin ve erişilebilirlik ayarlarınızın (tema, ses vb. diğer ayarlar) verilerini tutmak için web tarayıcınızın depolamasını kullanır. Verilerinizi toplamak için üçüncü parti çerezleri(cookies) kullanmaz.<!-- This game uses your web browser's storage to keep track of your high score data and accessibility settings (such as theme, sound, etc.). It does not use third-party cookies to collect your data. -->
 			</p>
-			<button id="modalButton" type="submit" class="btn success">Tamam, güvendeyim!<!-- Okey, im safe! --></button>
+			<button id="modalButton" type="submit" class="btn green">Tamam, güvendeyim!<!-- Okey, im safe! --></button>
+		</div>
+	</div>
+
+	<div id="settingsModal" class="modal">
+		<div class="modalContentSettings">
+			<div class="row">
+				<p>sound</p>
+				<div class="column">
+					<span class="active">on</span>
+					<span>off</span>
+				</div>
+			</div>
+			<div class="row">
+				<p>theme</p>
+				<div class="column">
+					<span>dark</span>
+					<span class="active">light</span>
+				</div>
+			</div>
+			<div class="row">
+				<p>language</p>
+				<div class="column">
+					<span>tr</span>
+					<span class="active">eng</span>
+				</div>
+			</div>
+			<div class="row">
+				<p>delete stats</p>
+				<div class="column">
+					<span class="hide">yes</span>
+					<span class="hide">no</span>
+				</div>
+			</div>
+			<button id="closeButton" type="submit" class="btn blue">close</button>
 		</div>
 	</div>
 
