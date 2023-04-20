@@ -16,18 +16,28 @@
 
 			<div class="sideContainer left hide" id="leftSide">	
 				<div class="rectangle recBig" id="highScoreContainer">
-					<p>high score <span id="highScore"></span></p>
+					<p class="eng">high score</p>
+					<p class="tr hide">yüksek skor</p>
+					<span id="highScore"></span>
 				</div>
 				<div class="rectangle recSmall" id="scoreContainer">
-					<p>score <span id="score"></span></p>
+					<p class="eng">score</p>
+					<p class="tr hide">skor</p>
+					<span id="score"></span>
 				</div>
 			</div>
 			
 			<div class="square sqSmall" id="smallHoverSquare"></div>
 
 			<div class="square sqBig hide" id="bigClickSquare">
-				<p id="startGameText" class="">start game</p>
-				<p id="gameStartingText" class="hide">game starting</p>
+				<span id="startGameText" class="">
+					<p class="eng">start game</p>
+					<p class="tr hide">oyuna başla</p>
+				</span>
+				<span id="gameStartingText" class="hide">
+					<p class="eng">game starting</p>
+					<p class="tr hide">oyun başlıyor</p>
+				</span>
 				<div class="progressBar hide">
 					<div class="progressBarPercent"></div>
 				</div>
@@ -36,22 +46,27 @@
 			<div class="square sqBig hide" id="gameStartedSquare">
 				<p id="numbers">
 					<span id="randomNumber1"></span> 
-					<span id="symbol">and</span>
-					<span id="randomNumber2">??</span>
+					<span id="symbol"></span>
+					<span id="randomNumber2"></span>
 				</p>
 				<p id="result">
 				</p>
 				<button id="up" type="submit" class="btn green">↑</button>
 				<button id="down" type="submit" class="btn red">↓</button>
-				<button id="restart" type="submit" class="btn blue hide">restart</button>
+				<button id="restart" type="submit" class="btn blue hide">
+					<p class="eng">restart</p>
+					<p class="tr hide">tekrar</p>
+				</button>
 			</div>
 
 			<div class="sideContainer right hide" id="rightSide">
-				<div class="rectangle recBig hover" id="howToPlayButton">
-					how to play?
+				<div class="rectangle recBig" id="howToPlayButton">
+					<p class="eng">how to play?</p>
+					<p class="tr hide">nasıl oynanır?</p>
 				</div>
-				<div class="rectangle recSmall hover" id="settingsButton">
-					settings
+				<div class="rectangle recSmall" id="settingsButton">
+					<p class="eng">settings</p>
+					<p class="tr hide">ayarlar</p>
 				</div>
 			</div>
 
@@ -61,43 +76,96 @@
 	<div id="informationModal" class="modal">
 		<div class="modalContentInformation">
 			<p class="informationText">
-				Bu oyun yüksek skor verilerinizin ve erişilebilirlik ayarlarınızın (tema, ses vb. diğer ayarlar) verilerini tutmak için web tarayıcınızın depolamasını kullanır. Verilerinizi toplamak için üçüncü parti çerezleri(cookies) kullanmaz.<!-- This game uses your web browser's storage to keep track of your high score data and accessibility settings (such as theme, sound, etc.). It does not use third-party cookies to collect your data. -->
+				<span class="eng">
+					This game uses your web browser's storage to keep track of your high score data and accessibility settings (such as theme, sound, etc.). It does not use third-party cookies to collect your data.
+				</span>
+				<span class="tr hide">
+					Bu oyun yüksek skor verilerinizin ve erişilebilirlik ayarlarınızın (tema, ses vb. diğer ayarlar) verilerini tutmak için web tarayıcınızın depolamasını kullanır. Verilerinizi toplamak için üçüncü parti çerezleri(cookies) kullanmaz.
+				</span>
 			</p>
-			<button id="modalButton" type="submit" class="btn green">Tamam, güvendeyim!<!-- Okey, im safe! --></button>
+			<button id="modalButton" type="submit" class="btn green">
+				<span class="eng">okey</span>
+				<span class="tr hide">anlaşıldı</span>
+			</button>
 		</div>
 	</div>
 
 	<div id="settingsModal" class="modal">
 		<div class="modalContentSettings">
 			<div class="row">
-				<p>sound</p>
+				<p class="eng">sound</p>
+				<p class="tr hide">ses</p>
 				<div class="column">
-					<span class="active">on</span>
-					<span>off</span>
+					<span id="soundOn">
+						<p class="eng">on</p>
+						<p class="tr hide">açık</p>
+					</span>
+					<span id="soundOff">
+						<p class="eng">off</p>
+						<p class="tr hide">kapalı</p>
+					</span>
 				</div>
 			</div>
 			<div class="row">
-				<p>theme</p>
+				<p class="eng">theme</p>
+				<p class="tr hide">tema</p>
 				<div class="column">
-					<span>dark</span>
-					<span class="active">light</span>
+					<span id="themeDark">
+						<p class="eng">dark</p>
+						<p class="tr hide">koyu</p>
+					</span>
+					<span id="themeLight">
+						<p class="eng">light</p>
+						<p class="tr hide">açık</p>
+					</span>
 				</div>
 			</div>
 			<div class="row">
-				<p>language</p>
+				<p class="eng">language</p>
+				<p class="tr hide">dil</p>
 				<div class="column">
-					<span>tr</span>
-					<span class="active">eng</span>
+					<span id="languageTr">
+						<p class="eng">turkish</p>
+						<p class="tr hide">türkçe</p>
+					</span>
+					<span id="languageEng">
+						<p class="eng">english</p>
+						<p class="tr hide">ingilizce</p>
+					</span>
 				</div>
 			</div>
-			<div class="row">
-				<p>delete stats</p>
+			<div class="row" id="deleteStatRow">
+				<p id="deleteStats">
+					<span class="eng">
+						delete high score stats
+					</span>
+					<span class="tr hide">
+						yüksek skor verilerini sil
+					</span>
+				</p>
 				<div class="column">
-					<span class="hide">yes</span>
-					<span class="hide">no</span>
+					<span class="hide" id="deleteYes">
+						<p class="eng">
+							delete
+						</p>
+						<p class="tr hide">
+							sil
+						</p>
+					</span>
+					<span class="hide" id="deleteNo">
+						<p class="eng">
+							cancel
+						</p>
+						<p class="tr hide">
+							iptal
+						</p>
+					</span>
 				</div>
 			</div>
-			<button id="closeButton" type="submit" class="btn blue">close</button>
+			<button id="closeButton" type="submit" class="btn blue">
+				<span class="eng">close</span>
+				<span class="tr hide">kapat</span>
+			</button>
 		</div>
 	</div>
 

@@ -99,6 +99,20 @@ section {
     animation-duration: 0.4s;
 }
 
+.modalContentSettings span:hover {
+    opacity: 0.2;
+}
+
+.modalContentSettings #deleteYes:hover {
+    opacity: 1;
+    color: var(--green);
+}
+
+.modalContentSettings #deleteNo:hover {
+    opacity: 1;
+    color: var(--red);
+}
+
 @-webkit-keyframes animateTop {
     from {
         top: -300px;
@@ -147,8 +161,9 @@ section {
     font-family: var(--font);
 }
 
-.btn:hover,
-.btn:focus {
+.btn:hover, .btn:focus,
+#howToPlayButton:hover, #settingsButton:hover,  
+#howToPlayButton:focus, #settingsButton:focus  {
     color: var(--primary);
     cursor: pointer;
     opacity: 0.8;
@@ -277,7 +292,7 @@ rec: rectangle */
     font-size: 2rem;
 }
 
-#gameStartedSquare .info {
+#gameStartedSquare .blue {
     font-size: 1.5rem;
     width: 100%;
     background-color: var(--blue);
