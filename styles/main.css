@@ -159,6 +159,9 @@ section {
     background-color: var(--secondary);
     border: 1px solid var(--primary);
     font-family: var(--font);
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 .btn:hover, .btn:focus,
@@ -290,12 +293,11 @@ rec: rectangle */
     width: 50%;
     height: 4rem;
     font-size: 2rem;
+    padding: 0;
 }
 
-#gameStartedSquare .blue {
-    font-size: 1.5rem;
-    width: 100%;
-    background-color: var(--blue);
+#restart p, #exit p {
+    font-size: 0.8rem;
 }
 
 #bigClickSquare {
@@ -331,4 +333,9 @@ rec: rectangle */
     100% {
         opacity: 1;
     }
+}
+
+#highScoreContainer, #scoreContainer {
+    display: flex;
+    gap: 0.8rem;
 }

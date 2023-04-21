@@ -51,7 +51,7 @@ $("#closeButton").click(function () {
 	$("#settingsModal").css("display", "none");
 	setTimeout(function () {
 		window.location.reload();	
-	}, 500);
+	}, 800);
 });
 
 /* game starting here */
@@ -118,6 +118,13 @@ $("#restart").click(function () {
 		$("#score").html(score);
 		hideButtons();
 		$("#restart").toggleClass("hide");
+		$("#exit").toggleClass("hide");
+	}, 500);
+});
+
+$("#exit").click(function () {
+	setTimeout(function () {
+		window.location.reload();
 	}, 500);
 });
 
@@ -128,7 +135,11 @@ function hideButtons() {
 
 function winProgress() {
 	playsound("winGame");
-	$("#result").html("win");
+	if (languageSetting === "eng") {
+		$("#result").html("win");
+	} else {
+		$("#result").html("kazandın");	
+	}
 	animateElement("#gameStartedSquare", "greenColor");
 	score++;
 	setTimeout(function () {
@@ -146,13 +157,22 @@ function winProgress() {
 
 function loseProgress() {
 	playsound("loseGame");
-	$("#result").html("lose");
+	if (languageSetting === "eng") {
+		$("#result").html("lose");
+	} else {
+		$("#result").html("kaybettin");	
+	}
 	animateElement("#gameStartedSquare", "redColor");
 	$("#restart").toggleClass("hide");
+	$("#exit").toggleClass("hide");
 }
 
 function equalProgress() {
-	$("#result").html("equal");
+	if (languageSetting === "eng") {
+		$("#result").html("equal");
+	} else {
+		$("#result").html("eşit");	
+	}
 	score += 9;
 	setTimeout(function () {
 		winProgress();
@@ -216,7 +236,6 @@ function setProgressBar(duration) {
 	var intervalId = setInterval(function () {
 		width += increment;
 		progressBarPercent.width(width + "%");
-
 		if (width >= 100) {
 			clearInterval(intervalId);
 		}
@@ -259,9 +278,9 @@ $("#languageEng").on("click", function () {
 	localStorage.setItem("language", "eng");
 });
 
-const soundSetting = localStorage.getItem("sound");
-const themeSetting = localStorage.getItem("theme");
-const languageSetting = localStorage.getItem("language");
+var soundSetting = localStorage.getItem("sound");
+var themeSetting = localStorage.getItem("theme");
+var languageSetting = localStorage.getItem("language");
 
 $(window).on("load", function () {
 	if (soundSetting === "on") {
@@ -309,9 +328,6 @@ $("#deleteNo").on("click", function () {
 
 $("#deleteYes").on("click", function () {
 	setHighScore("", "deleteStats");
-	setTimeout(function () {
-		window.location.reload();
-	}, 1000)
 	$("#deleteYes").toggleClass("hide");
 	$("#deleteNo").toggleClass("hide");
 });
