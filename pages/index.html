@@ -6,7 +6,7 @@
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<title>Guess-Game</title>
-	<link rel="stylesheet" href="/styles/main.css">
+	<link rel="stylesheet" href="../styles/main.css">
 	<link href="https://fonts.googleapis.com/css?family=Press+Start+2P" rel="stylesheet">
 </head>
 
@@ -51,24 +51,24 @@
 				</p>
 				<p id="result">
 				</p>
-				<button id="up" type="submit" class="btn green">↑</button>
-				<button id="down" type="submit" class="btn red">↓</button>
-				<button id="restart" type="submit" class="btn blue hide">
+				<button id="upBtn" type="submit" class="btn green">↑</button>
+				<button id="downBtn" type="submit" class="btn red">↓</button>
+				<button id="restartBtn" type="submit" class="btn blue hide">
 					<p class="eng">restart</p>
 					<p class="tr hide">tekrar</p>
 				</button>
-				<button id="exit" type="submit" class="btn red hide">
+				<button id="exitBtn" type="submit" class="btn red hide">
 					<p class="eng">exit</p>
 					<p class="tr hide">çıkış</p>
 				</button>
 			</div>
 
 			<div class="sideContainer right hide" id="rightSide">
-				<div class="rectangle recBig" id="howToPlayButton">
+				<div class="rectangle recBig menuButton" id="howToPlayBtn">
 					<p class="eng">how to play?</p>
 					<p class="tr hide">nasıl oynanır?</p>
 				</div>
-				<div class="rectangle recSmall" id="settingsButton">
+				<div class="rectangle recSmall menuButton" id="settingsBtn">
 					<p class="eng">settings</p>
 					<p class="tr hide">ayarlar</p>
 				</div>
@@ -78,16 +78,16 @@
 	</section>
 
 	<div id="informationModal" class="modal">
-		<div class="modalContentInformation">
+		<div class="modalContentBottom">
 			<p class="informationText">
 				<span class="eng">
-					This game uses your web browser's storage to keep track of your high score data and accessibility settings (such as theme, sound, etc.). It does not use third-party cookies to collect your data.
+					this game uses your web browser's storage to keep track of your high score data and accessibility settings (such as theme, sound, etc.). it does not use third-party cookies to collect your data.
 				</span>
 				<span class="tr hide">
-					Bu oyun yüksek skor verilerinizin ve erişilebilirlik ayarlarınızın (tema, ses vb. diğer ayarlar) verilerini tutmak için web tarayıcınızın depolamasını kullanır. Verilerinizi toplamak için üçüncü parti çerezleri(cookies) kullanmaz.
+					bu oyun yüksek skor verilerinizin ve erişilebilirlik ayarlarınızın (tema, ses vb. diğer ayarlar) verilerini tutmak için web tarayıcınızın depolamasını kullanır. verilerinizi toplamak için üçüncü parti çerezleri(cookies) kullanmaz.
 				</span>
 			</p>
-			<button id="modalButton" type="submit" class="btn green">
+			<button id="approveBtn" type="submit" class="btn green">
 				<span class="eng">okey</span>
 				<span class="tr hide">anlaşıldı</span>
 			</button>
@@ -95,7 +95,7 @@
 	</div>
 
 	<div id="settingsModal" class="modal">
-		<div class="modalContentSettings">
+		<div class="modalContentTop">
 			<div class="row">
 				<p class="eng">sound</p>
 				<p class="tr hide">ses</p>
@@ -138,25 +138,25 @@
 					</span>
 				</div>
 			</div>
-			<div class="row" id="deleteStatRow">
-				<p id="deleteStats">
+			<div class="row" id="removeStatRow">
+				<p id="removeStat">
 					<span class="eng">
-						delete high score stats
+						remove high score stats
 					</span>
 					<span class="tr hide">
 						yüksek skor verilerini sil
 					</span>
 				</p>
 				<div class="column">
-					<span class="hide" id="deleteYes">
+					<span class="hide" id="removeApprove">
 						<p class="eng">
-							delete
+							remove
 						</p>
 						<p class="tr hide">
 							sil
 						</p>
 					</span>
-					<span class="hide" id="deleteNo">
+					<span class="hide" id="removeDecline">
 						<p class="eng">
 							cancel
 						</p>
@@ -166,11 +166,39 @@
 					</span>
 				</div>
 			</div>
-			<button id="closeButton" type="submit" class="btn blue">
+			<button id="saveAndCloseBtn" type="submit" class="btn blue modalButton">
 				<span class="eng">save and close</span>
 				<span class="tr hide">kaydet ve kapat</span>
 			</button>
 		</div>
+	</div>
+	
+	<div id="howToPlayModal" class="modal">
+		<div class="modalContentTop">
+			<span class="howToPlayText eng">
+				<h2>how to play?</h2>
+				<p>the game is a guessing game that depends solely on your luck</p>
+				<p>when you start the game, the first number is generated and displayed on the left, while the second number is hidden behind "??"</p>
+				<p>the numbers only take a value between 0 and 99</p>
+				<p>your goal is to guess whether the second number is greater or smaller than the first number</p>
+				<p>when you win, 1 point is added to your score</p>
+				<p>since the tie is highly unlikely, it counts as a win, and an extra 10 points are added to your score</p>
+			</span>
+			<span class="howToPlayText tr hide">
+				<h2>nasıl oynanır?</h2> 
+				<p>oyun sadece şansınıza bağlı bir tahmin oyunudur</p>
+				<p>oyunu başlattığınız zaman ilk sayı oluşturulur solda gözükür ikinci sayı "??" ile gizlenmiştir</p>
+				<p>sayılar sadece 0-99 arası bir değer alır</p>
+				<p>sizin amacınız ikinci sayının ilk sayıdan daha mı büyük yoksa daha mı küçük olduğunu tahmin etmektir</p>
+				<p>kazandığınızda 1 skor eklenir</p>
+				<p>eşitlik durumu çok düşük olduğu için kazanmış sayılırsınız ve ekstra 10 skor eklenir</p>
+			</span>
+			<button id="okeyBtn" type="submit" class="btn blue modalButton">
+				<span class="eng">okey, i understand</span>
+				<span class="tr hide">tamam, anlaşıldı</span>
+			</button>
+		</div>
+		
 	</div>
 
 	<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.7/dist/umd/popper.min.js" integrity="sha384-zYPOMqeu1DAVkHiLqWBUTcbYfZ8osu1Nd6Z89ify25QV9guujx43ITvfi12/QExE"
@@ -179,7 +207,7 @@
 	integrity="sha384-Y4oOpwW3duJdCWv5ly8SCFYWqFDsfob/3GkgExXKV4idmbt98QcxXYs9UoXAB7BZ"
 	crossorigin="anonymous"></script>
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
-	<script src="/scripts/app.js"></script>
+	<script src="../scripts/app.js"></script>
 </body>
 
 </html>

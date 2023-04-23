@@ -11,8 +11,6 @@
 :root {
     --primary: #d9d9d9;
     --secondary: #161616;
-    --black: #000000;
-    --gray: #9d9d9d;
     --green: #6a994e;
     --red: #bc4749;
     --blue: #168aad;
@@ -23,8 +21,8 @@
 /*Html elements*/
 body {
     font-family: var(--font);
-    background-color: var(--primary);
     color: var(--primary);
+    background-color: var(--primary);
 }
 
 section {
@@ -37,7 +35,7 @@ section {
     background-color: var(--primary);
 }
 
-/*Information-text modal*/
+/*Modals*/
 .modal {
     display: none;
     justify-content: center;
@@ -51,7 +49,8 @@ section {
     background-color: rgba(0, 0, 0, 0.3);
 }
 
-.modalContentInformation {
+.modalContentBottom {
+    color: var(--primary);
     background-color: var(--secondary);
     position: fixed;
     bottom: 0;
@@ -83,9 +82,10 @@ section {
     }
 }
 
-.modalContentSettings {
+.modalContentTop {
+    color: var(--secondary);
+    background-color: var(--primary);
     font-size: 0.8rem;
-    background-color: var(--secondary);
     position: fixed;
     padding: 1rem;
     width: 70%;
@@ -97,20 +97,6 @@ section {
     -webkit-animation-duration: 0.4s;
     animation-name: animateTop;
     animation-duration: 0.4s;
-}
-
-.modalContentSettings span:hover {
-    opacity: 0.2;
-}
-
-.modalContentSettings #deleteYes:hover {
-    opacity: 1;
-    color: var(--green);
-}
-
-.modalContentSettings #deleteNo:hover {
-    opacity: 1;
-    color: var(--red);
 }
 
 @-webkit-keyframes animateTop {
@@ -133,23 +119,35 @@ section {
     }
 }
 
+#settingsModal span:hover {
+    opacity: 0.2;
+    cursor: pointer;
+}
+
+#settingsModal #removeApprove:hover {
+    opacity: 1;
+    color: var(--green);
+}
+
+#settingsModal #removeDecline:hover {
+    opacity: 1;
+    color: var(--red);
+}
+
+/*Alignments of the modals*/
 .row {
     display: flex;
-    flex-direction: column;
     align-items: center;
+    flex-direction: column;
     gap: 0.2rem;
     padding: 0.5rem;
-    border-bottom: 1px solid var(--primary);
+    border-bottom: 1px solid var(--secondary);
 }
 
 .column {
     display: flex;
     flex-direction: row;
     gap: 0.5rem;
-}
-
-.active {
-    color: var(--blue);
 }
 
 /*Buttons*/
@@ -164,13 +162,19 @@ section {
     justify-content: center;
 }
 
-.btn:hover, .btn:focus,
-#howToPlayButton:hover, #settingsButton:hover,  
-#howToPlayButton:focus, #settingsButton:focus  {
-    color: var(--primary);
+.btn:hover,
+.menuButton:hover {
     cursor: pointer;
     opacity: 0.8;
     border: 1px solid var(--secondary);
+}
+
+.modalButton {
+    border: 1px solid var(--secondary);
+}
+
+.modalButton:hover {
+    border: 1px solid var(--primary);
 }
 
 /*Button colors*/
@@ -184,6 +188,19 @@ section {
 
 .blue {
     background-color: var(--blue);
+}
+
+/*Text colors*/
+.greenColor {
+    color: var(--green);
+}
+
+.redColor {
+    color: var(--red);
+}
+
+.blueColor {
+    color: var(--blue);
 }
 
 /*Shapes*/
@@ -239,12 +256,24 @@ rec: rectangle */
     align-items: flex-start;
 }
 
+#highScoreContainer, #scoreContainer {
+    display: flex;
+    gap: 0.8rem;
+}
+
 /*Texts*/
 .informationText {
     color: var(--primary);
     margin-bottom: 1rem;
 }
 
+.howToPlayText {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+}
+
+/*Display and opacity*/
 .hide {
     display: none;
 }
@@ -253,18 +282,37 @@ rec: rectangle */
     opacity: 0.1;
 }
 
-.greenColor {
-    color: var(--green);
+/*Animations*/
+.blink {
+    animation: blink 4s infinite;
+}
+  
+@keyframes blink {
+    0% {
+        opacity: 1;
+    }
+    50% {
+        opacity: 0;
+    }
+    100% {
+        opacity: 1;
+    }
 }
 
-.redColor {
-    color: var(--red);
+.progressBar{
+    width: 100%;
+    height: 4px;
+    background-color: var(--secondary);
+}
+  
+.progressBarPercent {
+    width: 0%;
+    height: 100%;
+    background-color: var(--blue);
+    transition: width 1s linear;
 }
 
-.blueColor {
-    color: var(--blue);
-}
-
+/*Styles for ids*/
 #gameInterface #gameStartedSquare {
     padding: 1rem;
     flex-direction: row;
@@ -296,7 +344,7 @@ rec: rectangle */
     padding: 0;
 }
 
-#restart p, #exit p {
+#restartBtn p, #exitBtn p {
     font-size: 0.8rem;
 }
 
@@ -304,38 +352,4 @@ rec: rectangle */
     flex-direction: column;
     padding: 1rem;
     gap: 1rem;
-}
-
-.progressBar{
-    width: 100%;
-    height: 4px;
-    background-color: var(--secondary);
-}
-  
-.progressBarPercent {
-    width: 0%;
-    height: 100%;
-    background-color: var(--blue);
-    transition: width 1s linear;
-}
-
-.blink {
-    animation: blink 4s infinite;
-}
-  
-@keyframes blink {
-    0% {
-        opacity: 1;
-    }
-    50% {
-        opacity: 0;
-    }
-    100% {
-        opacity: 1;
-    }
-}
-
-#highScoreContainer, #scoreContainer {
-    display: flex;
-    gap: 0.8rem;
 }
