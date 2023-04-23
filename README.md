@@ -1,5 +1,5 @@
-### Guess - Game
-####Nedir? Nasıl oynanır? - TR
+## Guess - Game
+### Nedir? Nasıl oynanır? - TR
 >Dosyaları indirdikten sonra "startGame.html" sayfasına tıklayıp direkt oyunu başlatabilirsiniz.
 - Oyun tahmin ve şansınıza bağlı bir oyundur.
 - Oyunu başlattığınız zaman ilk sayı oluşturulur solda gözükür ikinci sayı "??" ile gizlenmiştir.
@@ -9,7 +9,7 @@
 - Eşitlik durumu çok düşük olduğu için kazanmış sayılırsınız ve ekstra 10 skor eklenir.
 ![in game screenshot tr](sources/images/inGameTr.png)
 ---
-####What is it? How to play? - EN
+### What is it? How to play? - EN
 >After downloading the files, you can directly start the game by clicking on the "startGame.html" page.
 - The game is a guessing game and relies on your luck.
 - When you start the game, the first number is generated and shown on the left, and the second number is hidden with "??".

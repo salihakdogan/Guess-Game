@@ -265,7 +265,7 @@ function equalProgress() {
 /*TR - Yüksek skor verisini kaydeden fonksiyondur, ayarlardan yüksek skor verileri silinirken tekrar bu fonksiyon kullanılır. Fonksiyonu tekrar kullanırken ses çalmaması için "operation" parametresi ile yakalanır. Fonksiyon skor verileri silinirken çağırılmadıysa ses çalmaz. */
 /*EN - This function saves the high score data and is also used when deleting high score data from settings. The "operation" parameter is used to prevent playing sound when the function is called during high score data deletion. If the function is called for deleting the high score data, the sound will not play.*/
 function setHighScore(scorePoint, operation) {
-	if (operation !== "removedStats") {
+	if (operation !== "removedStat") {
 		playsound("setHighScore");
 	}
 	localStorage.setItem("highScore", scorePoint);
@@ -395,6 +395,12 @@ $(window).on("load", function () {
 if(soundSetting == undefined) {
 	$("#soundOn").toggleClass("blueColor");
 	$("#soundOff").toggleClass("blueColor");
+}
+
+/*TR - İlk başlatıldığında ayarlardaki yüksek skoru sil seçeneğini gizler.*/
+/*EN - The clear high score option in the settings is hidden when the game is first started.*/
+if(getHighScore() == null) {
+	$("#removeStatRow").css("display","none");
 }
 
 /*TR - Yüksek skor verilerini sil seçeneğine tıklanınca sil ve iptal et seçeneklerini gösterir.*/
